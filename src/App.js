@@ -19,7 +19,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/countries-app" element={<Main mode={mode}/>} />
-          <Route path="/countries-app/detalle" element={<Detalles mode={mode}/>} />
+          <Route path="/detalle" element={<Detalles mode={mode}/>} />
         </Routes>
       </div>
     </div>
