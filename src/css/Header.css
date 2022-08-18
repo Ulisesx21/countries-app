@@ -1,0 +1,94 @@
+
+.Header-L {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    background: hsl(0, 0%, 100%);
+}
+
+.Header-D {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    background: hsl(209, 23%, 22%);
+}
+
+.Header-D div{
+    background: hsl(209, 23%, 22%);
+    color: white;
+}
+
+header div {
+    font-size: 1.6rem;
+    margin: 0 120px;
+    font-weight: 800;
+}
+
+.mode {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.btn-mode {
+    border: none;
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-mode-D {
+    border: none;
+    background: hsl(209, 23%, 22%);
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+}
+
+.i-moon{
+    margin: 0 5px
+}
+
+.i-moon-D{
+    margin: 0 5px;
+    color: white;
+}
+
+@media (max-width: 900px){
+
+    header div {
+        font-size: 1.3rem;
+        margin: 0 60px;
+    }
+
+    .btn-mode {
+        font-size: 0.9rem;
+    }
+
+    .btn-mode-D {
+        font-size: 0.9rem;
+    }
+    
+}
+
+
+@media (max-width: 550px){
+
+    header div {
+        font-size: 1rem;
+        margin: 0 20px;
+        font-weight: 800;
+    }
+
+    .btn-mode {
+        font-size: 0.8rem;
+    }
+
+    .btn-mode-D {
+        font-size: 0.8rem;
+    }
+    
+}

@@ -1,0 +1,102 @@
+.main {
+    display: block;
+    width: 100%;
+    border-top: 1px solid rgba(179, 179, 179, 0.281);
+    height: calc(100vh - 90px);
+}
+
+.main-D {
+    border-top: 1px solid hsla(212, 28%, 13%, 0.459);
+    background: hsl(207, 26%, 17%);
+}
+
+.countries-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.countries-container-D{
+    background: hsl(207, 26%, 17%);
+}
+
+.countrie-container {
+    height: 360px;
+    width: 280px;
+    background: hsl(0, 0%, 100%);
+    border-radius: 5px;
+    margin: 40px 40px;
+    box-shadow: 1px 1px 5px rgba(179, 179, 179, 0.425);
+}
+
+.countrie-container-D {
+    background: hsl(209, 23%, 22%);
+    box-shadow: none;
+    box-shadow: 1px 1px 5px hsl(210, 23%, 12%);
+}
+
+.img-container img{
+    display: block;
+    width: 280px;
+    height: 180px;
+    border-radius: 5px 5px 0 0;
+}
+
+.information-container {
+    padding: 0 20px;
+}
+
+.information-container-D {
+    padding: 0 20px;
+}
+
+.a-titulo{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: black;
+}
+
+.a-titulo-D{
+    color: rgb(255, 255, 255);
+}
+
+.information-container h3{
+    padding-top: 20px;
+    padding-bottom: 18px;
+}
+
+.information-container-D h3{
+    color: white;
+}
+
+.information-container p{
+    padding-bottom: 4px;
+    color: hsl(200, 15%, 8%);
+}
+
+.information-container-D p{
+    color: hsl(0, 0%, 100%);
+}
+
+.information-container p span{
+    font-weight: 600;
+}
+
+.hola {
+    height: 130px;
+    background: hsl(0, 0%, 98%);
+}
+
+.loading {
+    padding-top: 55px;
+    height: 100vh;
+}
+
+.loading-D {
+    padding-top: 55px;
+    background: hsl(207, 26%, 17%);
+    color: white;
+    height: 100vh;
+}

@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Detalles from "./components/Detalles";
+import "./App.css"
+
 
 function App() {
+
+  let [mode, setMode] = useState()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header mode={(e)=> {
+        setMode(e)
+        }}/>
+      <div>
+        <Routes>
+          <Route path="/" element={<Main mode={mode}/>} />
+          <Route path="/detalle" element={<Detalles mode={mode}/>} />
+        </Routes>
+      </div>
     </div>
   );
 }
