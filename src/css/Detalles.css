@@ -190,10 +190,6 @@
     background: rgb(250, 250, 250);
 }
 
-.back-btn button:active{
-    box-shadow: 1px 1px 5px rgba(179, 179, 179, 0.699);
-}
-
 .left {
     padding-right: 12px;
 }
