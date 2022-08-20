@@ -84,23 +84,20 @@
     color:white;
 }
 
-.borders-container div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: 400;
-    font-size: 0.9rem;
-    margin-left: 6px;
-    flex-wrap: wrap;
-}
-
 .borders-container {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 50px;
     width: 700px;
+}
+
+.borders-container div {
+    display: flex;
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-left: 6px;
+    flex-wrap: wrap;
 }
 
 .borders {
@@ -142,6 +139,9 @@
     color: white;
 }
 
+.brd-c {
+    width: 450px;
+}
 
 .back-btn {
     display: flex;
