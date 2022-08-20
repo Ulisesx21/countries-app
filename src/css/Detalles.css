@@ -423,7 +423,7 @@
 
     .detalle-container {
         padding: 0px 20px;
-        height: 100vh;
+        height: 100%;
     }
 
     .detalle-container img{
