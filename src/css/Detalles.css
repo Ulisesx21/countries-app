@@ -307,7 +307,7 @@
         align-items: flex-start;
         margin: 0;
         padding: 0;
-        height: 300px;
+        width: 220px;
     }
 
     .desciption-title h3{
@@ -361,6 +361,10 @@
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-start;
+    }
+
+    .brd-c {
+        width: 100%;
     }
 
 }
