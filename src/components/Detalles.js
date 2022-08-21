@@ -19,7 +19,7 @@ export default function Detalles(props){
             .then(res => res.json())
             .then(data => setCountries(data))
             .catch(err => console.log(err))
-    },[])
+    },[name])
 
     const Left = <FontAwesomeIcon icon={faArrowLeft} className="left"/>
     
@@ -40,7 +40,9 @@ export default function Detalles(props){
                     </div>
                     <div className="description">
                         <div className={`description-div1 ${props.mode ? "description-div1-D" : ""}`}>
-                            <p><span>Native Name:</span> {i.name.nativeName[Object.keys(i.name.nativeName)[Object.keys(i.name.nativeName).length-1]].common}</p>
+                            <p><span>Native Name: </span> 
+                             {i.name.nativeName[Object.keys(i.name.nativeName)[Object.keys(i.name.nativeName).length-1]].common}
+                            </p>
                             <p><span>Population: </span>{i.population.toLocaleString('en-US')}</p>
                             <p><span>Region:</span> {i.region}</p>
                             <p><span>Sub Region:</span> {i.subregion}</p>
@@ -54,7 +56,11 @@ export default function Detalles(props){
                     </div>
                     <div className="borders-container">
                         <h5 className={`brd ${props.mode ? "brd-D" : ""}`}>Border Countries:</h5>
-                        <div className="brd-c">{i.borders ? i.borders.map((i,o)=> <div className={props.mode ? "borders-D" : "borders"} key={o}>{i}</div>) : ""}</div>
+                        <div className="brd-c">
+                            <div className="div-brd-container">
+                                {i.borders ? i.borders.map((i,o)=> <div className={props.mode ? "borders-D" : "borders"} key={o}>{i}</div>) : ""}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

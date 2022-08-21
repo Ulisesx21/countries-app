@@ -20,7 +20,6 @@ export default function Main(props) {
                 data.map(i => c.push(i.name.common.toLowerCase(),i.name.official.toLowerCase()))
                 setCountries(data)
                 setValidCountries(c)
-                console.log(c.includes("kiribati"))
             })
             .catch(err => console.log(err))
 
@@ -68,7 +67,11 @@ export default function Main(props) {
                             <img src={i.flags.png} alt={i.name.common} />
                         </div>
                         <div className={`information-container ${props.mode ? "information-container-D" : ""}`}>
-                            <h3><Link to={`/detalle?name=${i.name.common}`} className={`a-titulo ${props.mode ? "a-titulo-D" : ""}`}>{i.name.common}</Link></h3>
+                            <h3>
+                                <Link to={`/detalle?name=${i.name.common}`} className={`a-titulo ${props.mode ? "a-titulo-D" : ""}`}>
+                                {i.name.common}
+                                </Link>
+                            </h3>
                             <p><span>Population: </span>{`${i.population.toLocaleString('en-US')}`}</p>
                             <p><span>Region: </span>{`${i.region}`}</p>
                             <p><span>Capital: </span>{`${i.capital}`}</p>
