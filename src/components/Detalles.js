@@ -25,7 +25,7 @@ export default function Detalles(props){
     
     return (
         <div className={`detalle-container ${props.mode ? "detalle-container-D" : ""}`}>
-            <div className={`back-btn ${props.mode ? "back-btn-D" : ""}`}>
+            <div className={props.mode ? "back-btn-D" : "back-btn"}>
                 <Link to={`/countries-app`} className="back-btn-link"><button>{Left} Back</button></Link>
             </div>
             {countries ? countries.map((i,o)=> 
