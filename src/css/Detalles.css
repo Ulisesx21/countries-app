@@ -98,7 +98,8 @@
     align-items: center;
     width: 60px;
     margin-left: 6px;
-    margin-bottom: 6px;
+    margin-top: 1px;
+    margin-bottom: 5px;
     padding: 1px 0;
     box-shadow: 1px 1px 5px rgba(179, 179, 179, 0.425);
     flex-wrap: wrap;
@@ -110,8 +111,9 @@
     justify-content: center;
     align-items: center;
     width: 60px;
+    margin-top: 1px;
     margin-left: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     padding: 1px 0;
     text-align: center;
     flex-wrap: wrap;
