@@ -28,37 +28,37 @@ export default function Detalles({ mode }){
             <div className={mode ? "back-btn-D" : "back-btn"}>
                 <Link to={`/countries-app`} className="back-btn-link"><button>{Left} Back</button></Link>
             </div>
-            {countries ? countries.map((i,o)=> 
+            {countries ? countries.map((country,i)=> 
             
-            <div className="img-detalle" key={o}>
+            <div className="img-detalle" key={i}>
                 <div>
-                    <img src={i.flags.png} alt={i.name.common}/>
+                    <img src={country.flags.png} alt={country.name.common}/>
                 </div>
                 <div className="desciption-title-container">
                     <div className={`description-title ${mode && "description-title-D"}`}>
-                        <h3>{i.name.common}</h3>
+                        <h3>{country.name.common}</h3>
                     </div>
                     <div className="description">
                         <div className={`description-div1 ${mode && "description-div1-D"}`}>
                             <p><span>Native Name: </span> 
-                             {i.name.nativeName[Object.keys(i.name.nativeName)[Object.keys(i.name.nativeName).length-1]].common}
+                             {country.name.nativeName[Object.keys(country.name.nativeName)[Object.keys(country.name.nativeName).length-1]].common}
                             </p>
-                            <p><span>Population: </span>{i.population.toLocaleString('en-US')}</p>
-                            <p><span>Region:</span> {i.region}</p>
-                            <p><span>Sub Region:</span> {i.subregion}</p>
-                            <p><span>Capital:</span> {i.capital}</p>
+                            <p><span>Population: </span>{country.population.toLocaleString('en-US')}</p>
+                            <p><span>Region:</span> {country.region}</p>
+                            <p><span>Sub Region:</span> {country.subregion}</p>
+                            <p><span>Capital:</span> {country.capital}</p>
                         </div>
                         <div className={`description-div2 ${mode && "description-div2-D"}`}>
-                            <p><span>Top Level Domain:</span> {i.tld[0]}</p>
-                            <p><span>Currencies:</span> {i.currencies[Object.keys(i.currencies)[0]].name}</p>
-                            <p><span>Languages:</span> {Object.values(i.languages).join(", ")}</p>
+                            <p><span>Top Level Domain:</span> {country.tld[0]}</p>
+                            <p><span>Currencies:</span> {country.currencies[Object.keys(country.currencies)[0]].name}</p>
+                            <p><span>Languages:</span> {Object.values(country.languages).join(", ")}</p>
                         </div>
                     </div>
                     <div className="borders-container">
                         <h5 className={`brd ${mode && "brd-D"}`}>Border Countries:</h5>
                         <div className="brd-c">
                             <div className="div-brd-container">
-                                {i.borders ? i.borders.map((i,o)=> <div className={mode ? "borders-D" : "borders"} key={o}>{i}</div>) : ""}
+                                {country.borders ? country.borders.map((border,i)=> <div className={mode ? "borders-D" : "borders"} key={i}>{border}</div>) : ""}
                             </div>
                         </div>
                     </div>

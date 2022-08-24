@@ -61,8 +61,8 @@ export default function Main({ mode }) {
         <div className={`main ${mode && "main-D"}`}>
             <Search change={changeRegion} search={changeCountrie} mode={mode}/>
             <div className={`countries-container ${mode && "countries-container-D"}`}>
-                {countries ? countries.map((country, o) =>
-                    <div className={`countrie-container ${mode && "countrie-container-D"}`} key={o}>
+                {countries ? countries.map((country, i) =>
+                    <div className={`countrie-container ${mode && "countrie-container-D"}`} key={i}>
                         <div className="img-container">
                             <img src={country.flags.png} alt={country.name.common} />
                         </div>
