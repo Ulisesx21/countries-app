@@ -10,7 +10,7 @@ export default function Search({ mode, change, search }){
 
     return(
         <div className="search-container">
-            <div className={`${mode ? "search-div1-D" : "search-div1" }`}>
+            <div className={`search-div1 ${mode && "search-div1-D"}`}>
                 <form onSubmit={(e)=>{
                     search(e)
                     e.currentTarget.input.value = ""
@@ -21,7 +21,7 @@ export default function Search({ mode, change, search }){
                     </label>
                 </form>
             </div>
-            <div className={`${mode ? "search-div2-D" : "search-div2" }`}>
+            <div className={`${mode ? "search-div2-D" : "search-div2"}`}>
                 <select onChange={change}>
                     <option disabled selected>Filter by Region</option>
                     <option>All</option>

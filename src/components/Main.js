@@ -1,9 +1,9 @@
 
 import { useState, useEffect } from "react";
-import "../css/Main.css"
-import Search from "./Search";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 import swal from 'sweetalert';
+import "../css/Main.css"
 
 export default function Main({ mode }) {
 
@@ -17,7 +17,7 @@ export default function Main({ mode }) {
             .then(res => res.json())
             .then(data => {
                 let c = ["brasil"]
-                data.map(i => c.push(i.name.common.toLowerCase(),i.name.official.toLowerCase()))
+                data.map(country => c.push(country.name.common.toLowerCase(),country.name.official.toLowerCase()))
                 setCountries(data)
                 setValidCountries(c)
             })
@@ -58,23 +58,23 @@ export default function Main({ mode }) {
 
 
     return (
-        <div className={`main ${mode ? "main-D" : ""}`}>
+        <div className={`main ${mode && "main-D"}`}>
             <Search change={changeRegion} search={changeCountrie} mode={mode}/>
-            <div className={`countries-container ${mode ? "countries-container-D" : ""}`}>
-                {countries ? countries.map((i, o) =>
-                    <div className={`countrie-container ${mode ? "countrie-container-D" : ""}`} key={o}>
+            <div className={`countries-container ${mode && "countries-container-D"}`}>
+                {countries ? countries.map((country, o) =>
+                    <div className={`countrie-container ${mode && "countrie-container-D"}`} key={o}>
                         <div className="img-container">
-                            <img src={i.flags.png} alt={i.name.common} />
+                            <img src={country.flags.png} alt={country.name.common} />
                         </div>
-                        <div className={`information-container ${mode ? "information-container-D" : ""}`}>
+                        <div className={`information-container ${mode && "information-container-D"}`}>
                             <h3>
-                                <Link to={`/detalle?name=${i.name.common}`} className={`a-titulo ${mode ? "a-titulo-D" : ""}`}>
-                                {i.name.common}
+                                <Link to={`/detalle?name=${country.name.common}`} className={`a-titulo ${mode && "a-titulo-D"}`}>
+                                {country.name.common}
                                 </Link>
                             </h3>
-                            <p><span>Population: </span>{`${i.population.toLocaleString('en-US')}`}</p>
-                            <p><span>Region: </span>{`${i.region}`}</p>
-                            <p><span>Capital: </span>{`${i.capital}`}</p>
+                            <p><span>Population: </span>{`${country.population.toLocaleString('en-US')}`}</p>
+                            <p><span>Region: </span>{`${country.region}`}</p>
+                            <p><span>Capital: </span>{`${country.capital}`}</p>
                         </div>
                     </div>
                 )
