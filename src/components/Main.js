@@ -5,7 +5,7 @@ import Search from "./Search";
 import { Link } from "react-router-dom";
 import swal from 'sweetalert';
 
-export default function Main(props) {
+export default function Main({ mode }) {
 
     let [countries, setCountries] = useState()
     let [validCountries, setValidCountries] = useState()
@@ -58,17 +58,17 @@ export default function Main(props) {
 
 
     return (
-        <div className={`main ${props.mode ? "main-D" : ""}`}>
-            <Search change={changeRegion} search={changeCountrie} mode={props.mode}/>
-            <div className={`countries-container ${props.mode ? "countries-container-D" : ""}`}>
+        <div className={`main ${mode ? "main-D" : ""}`}>
+            <Search change={changeRegion} search={changeCountrie} mode={mode}/>
+            <div className={`countries-container ${mode ? "countries-container-D" : ""}`}>
                 {countries ? countries.map((i, o) =>
-                    <div className={`countrie-container ${props.mode ? "countrie-container-D" : ""}`} key={o}>
+                    <div className={`countrie-container ${mode ? "countrie-container-D" : ""}`} key={o}>
                         <div className="img-container">
                             <img src={i.flags.png} alt={i.name.common} />
                         </div>
-                        <div className={`information-container ${props.mode ? "information-container-D" : ""}`}>
+                        <div className={`information-container ${mode ? "information-container-D" : ""}`}>
                             <h3>
-                                <Link to={`/detalle?name=${i.name.common}`} className={`a-titulo ${props.mode ? "a-titulo-D" : ""}`}>
+                                <Link to={`/detalle?name=${i.name.common}`} className={`a-titulo ${mode ? "a-titulo-D" : ""}`}>
                                 {i.name.common}
                                 </Link>
                             </h3>
@@ -78,7 +78,7 @@ export default function Main(props) {
                         </div>
                     </div>
                 )
-                    : <div className={props.mode ? "loading-D" : "loading"}>Loading...</div>}
+                    : <div className={mode ? "loading-D" : "loading"}>Loading...</div>}
             </div>
         </div>
     )

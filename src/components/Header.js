@@ -4,7 +4,7 @@ import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
 
 
-export default function Header(props){
+export default function Header({ mode }){
 
     let [lmode, setLmode] = useState(true)
 
@@ -12,7 +12,7 @@ export default function Header(props){
 
     function handleMode(){
         setLmode(!lmode)
-        return props.mode(lmode)
+        return mode(lmode)
     }
 
     return(
