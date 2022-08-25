@@ -2,26 +2,24 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
+import axios from "axios";
 import swal from 'sweetalert';
 import "../css/Main.css"
 
 export default function Main({ mode }) {
 
     let [countries, setCountries] = useState()
-    let [validCountries, setValidCountries] = useState()
 
 
     useEffect(() => {
 
-        fetch("https://restcountries.com/v3.1/all")
-            .then(res => res.json())
-            .then(data => {
-                let c = ["brasil"]
-                data.map(country => c.push(country.name.common.toLowerCase(),country.name.official.toLowerCase()))
+        axios.get("https://restcountries.com/v3.1/all")
+            .then(res => {
+                let data = res.data;
                 setCountries(data)
-                setValidCountries(c)
-            })
-            .catch(err => console.log(err))
+            }
+            )
+            .catch(err => swal("Error", "Something has wrong..."))
 
     }, [])
 
@@ -29,15 +27,22 @@ export default function Main({ mode }) {
     function changeRegion(e) {
         setCountries("")
         if (e.target.value === "All") {
-            fetch(`https://restcountries.com/v3.1/all`)
-                .then(res => res.json())
-                .then(data => setCountries(data))
-                .catch(err => console.log(err))
+
+            axios.get("https://restcountries.com/v3.1/all")
+                .then(res => {
+                    let data = res.data;
+                    setCountries(data)
+                })
+                .catch(err => swal("Error", "Something has wrong..."))
+
         } else {
-            fetch(`https://restcountries.com/v3.1/region/${e.target.value}`)
-                .then(res => res.json())
-                .then(data => setCountries(data))
-                .catch(err => console.log(err))
+
+            axios.get(`https://restcountries.com/v3.1/region/${e.target.value}`)
+                .then(res => {
+                    let data = res.data;
+                    setCountries(data)
+                })
+                .catch(err => swal("Error", "Something has wrong..."))
         }
     }
 
@@ -45,21 +50,21 @@ export default function Main({ mode }) {
         e.preventDefault()
         e = e.currentTarget.input.value
 
-        if (!validCountries.includes(e.toLowerCase())) {
-            swal("Error","Country not found...")
-        }
-        else {
-            fetch(`https://restcountries.com/v3.1/name/${e}`)
-                    .then(res => res.json())
-                    .then(data => setCountries(data))
-                    .catch(err => alert(err))
-        }
+
+        axios.get(`https://restcountries.com/v3.1/name/${e}`)
+            .then(res => {
+                let data = res.data;
+                setCountries(data)
+            }
+            )
+            .catch(err => swal("Error", "Country not found..."))
+
     }
 
 
     return (
         <div className={`main ${mode && "main-D"}`}>
-            <Search change={changeRegion} search={changeCountrie} mode={mode}/>
+            <Search change={changeRegion} search={changeCountrie} mode={mode} />
             <div className={`countries-container ${mode && "countries-container-D"}`}>
                 {countries ? countries.map((country, i) =>
                     <div className={`countrie-container ${mode && "countrie-container-D"}`} key={i}>
@@ -69,7 +74,7 @@ export default function Main({ mode }) {
                         <div className={`information-container ${mode && "information-container-D"}`}>
                             <h3>
                                 <Link to={`/detalle?name=${country.name.common}`} className={`a-titulo ${mode && "a-titulo-D"}`}>
-                                {country.name.common}
+                                    {country.name.common}
                                 </Link>
                             </h3>
                             <p><span>Population: </span>{`${country.population.toLocaleString('en-US')}`}</p>
