@@ -50,7 +50,6 @@ export default function Main({ mode }) {
         e.preventDefault()
         e = e.currentTarget.input.value
 
-
         axios.get(`https://restcountries.com/v3.1/name/${e}`)
             .then(res => {
                 let data = res.data;
