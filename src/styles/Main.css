@@ -1,0 +1,23 @@
+.main {
+    display: block;
+    width: 100%;
+    border-top: 1px solid rgba(179, 179, 179, 0.281);
+    height: calc(100vh - 90px);
+}
+
+.main-D {
+    border-top: 1px solid hsla(212, 28%, 13%, 0.459);
+    background: hsl(207, 26%, 17%);
+}
+
+.loading {
+    padding-top: 55px;
+    height: 100vh;
+}
+
+.loading-D {
+    padding-top: 55px;
+    background: hsl(207, 26%, 17%);
+    color: white;
+    height: 100vh;
+}

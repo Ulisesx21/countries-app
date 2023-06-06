@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../context/Context";
 import { useContext } from "react";
+import "../styles/Country.css";
 
 export const CountryItem = ({ country }) => {
-
   const { themeState } = useContext(ThemeContext);
 
   return (
@@ -14,7 +14,9 @@ export const CountryItem = ({ country }) => {
         <img src={country.flags.png} alt={country.name.common} />
       </div>
       <div
-        className={`information-container ${themeState && "information-container-D"}`}
+        className={`information-container ${
+          themeState && "information-container-D"
+        }`}
       >
         <h3>
           <Link

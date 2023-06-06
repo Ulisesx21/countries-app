@@ -1,11 +1,10 @@
-import "../css/Header.css";
+import "../styles/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../context/Context";
 
 export default function Header() {
-
   const { themeState, setThemeState } = useContext(ThemeContext);
 
   const Moon = (

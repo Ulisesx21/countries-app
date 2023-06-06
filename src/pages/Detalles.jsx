@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import "../css/Detalles.css";
-import { ThemeContext } from "../context/ThemeContext";
-import axios from "axios";
+import "../styles/Detalles.css";
+import { ThemeContext } from "../context/Context";
+import { instance } from "../api/base.api";
 
 export default function Detalles() {
-  let [countries, setCountries] = useState();
+  const [countries, setCountries] = useState();
 
   let query = new URLSearchParams(window.location.search);
   let name = query.get("name");
@@ -17,9 +17,7 @@ export default function Detalles() {
   useEffect(() => {
     const getCountry = async () => {
       try {
-        const response = await axios.get(
-          `https://restcountries.com/v3.1/name/${name}?fullText=true`
-        );
+        const response = await instance.get(`name/${name}?fullText=true`);
         setCountries(response.data);
       } catch (error) {
         console.log(error);
@@ -33,7 +31,7 @@ export default function Detalles() {
   return (
     <div className={`detalle-container ${themeState && "detalle-container-D"}`}>
       <div className={themeState ? "back-btn-D" : "back-btn"}>
-        <Link to={`/countries-app`} className="back-btn-link">
+        <Link to={`/`} className="back-btn-link">
           <button>{Left} Back</button>
         </Link>
       </div>
@@ -87,7 +85,8 @@ export default function Detalles() {
                   }`}
                 >
                   <p>
-                    <span>Top Level Domain:</span> {country.tld[0]}
+                    <span>Top Level Domain:</span>{" "}
+                    {country.tld[0] ? country.tld[0] : "none"}
                   </p>
                   <p>
                     <span>Currencies:</span>{" "}
@@ -108,16 +107,20 @@ export default function Detalles() {
                 </h5>
                 <div className="brd-c">
                   <div className="div-brd-container">
-                    {country.borders
-                      ? country.borders.map((border, i) => (
-                          <div
-                            className={themeState ? "borders-D" : "borders"}
-                            key={i}
-                          >
-                            {border}
-                          </div>
-                        ))
-                      : ""}
+                    {country.borders ? (
+                      country.borders.map((border, i) => (
+                        <div
+                          className={themeState ? "borders-D" : "borders"}
+                          key={i}
+                        >
+                          {border}
+                        </div>
+                      ))
+                    ) : (
+                      <div className={themeState ? "borders-D" : "borders"}>
+                        None
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

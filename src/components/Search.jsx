@@ -1,12 +1,11 @@
-import "../css/Search.css";
+import "../styles/Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../context/Context";
 
-export default function Search({ changeRegion, searchCountry }) {
-
-  const { themeState } = useContext(ThemeContext);
+export default function Search() {
+  const { themeState, searchCountry, changeRegion } = useContext(ThemeContext);
 
   const element = (
     <FontAwesomeIcon
