@@ -31,7 +31,7 @@ export default function Detalles() {
   return (
     <div className={`detalle-container ${themeState && "detalle-container-D"}`}>
       <div className={themeState ? "back-btn-D" : "back-btn"}>
-        <Link to={`/`} className="back-btn-link">
+        <Link to={`/countries-app`} className="back-btn-link">
           <button>{Left} Back</button>
         </Link>
       </div>
