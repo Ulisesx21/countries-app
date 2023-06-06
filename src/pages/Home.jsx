@@ -4,7 +4,7 @@ import "../styles/Main.css";
 import { CountryItem } from "../components/Country";
 import { ThemeContext } from "../context/Context";
 
-export default function Main() {
+export default function Home() {
   const { themeState, countries } = useContext(ThemeContext);
 
   return (
