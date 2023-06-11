@@ -26,6 +26,8 @@ export default function Detalles() {
     getCountry();
   }, [name]);
 
+  console.log(countries);
+
   const Left = <FontAwesomeIcon icon={faArrowLeft} className="left" />;
 
   return (
@@ -39,7 +41,7 @@ export default function Detalles() {
         countries.map((country, i) => (
           <div className="img-detalle" key={i}>
             <div>
-              <img src={country.flags.png} alt={country.name.common} />
+              <img src={country?.flags?.png} alt={country?.name?.common} />
             </div>
             <div className="desciption-title-container">
               <div
@@ -47,7 +49,7 @@ export default function Detalles() {
                   themeState && "description-title-D"
                 }`}
               >
-                <h3>{country.name.common}</h3>
+                <h3>{country.name.common ? country.name.common : "None"}</h3>
               </div>
               <div className="description">
                 <div
@@ -57,26 +59,31 @@ export default function Detalles() {
                 >
                   <p>
                     <span>Native Name: </span>
-                    {
-                      country.name.nativeName[
-                        Object.keys(country.name.nativeName)[
-                          Object.keys(country.name.nativeName).length - 1
-                        ]
-                      ].common
-                    }
+                    {country.name.nativeName
+                      ? country.name.nativeName[
+                          Object.keys(country.name.nativeName)[
+                            Object.keys(country.name.nativeName).length - 1
+                          ]
+                        ].common
+                      : country.name.common}
                   </p>
                   <p>
                     <span>Population: </span>
-                    {country.population.toLocaleString("en-US")}
+                    {country.population
+                      ? country.population.toLocaleString("en-US")
+                      : "None"}
                   </p>
                   <p>
-                    <span>Region:</span> {country.region}
+                    <span>Region:</span>{" "}
+                    {country.region ? country.region : "None"}
                   </p>
                   <p>
-                    <span>Sub Region:</span> {country.subregion}
+                    <span>Sub Region:</span>{" "}
+                    {country.subregion ? country.subregion : "None"}
                   </p>
                   <p>
-                    <span>Capital:</span> {country.capital}
+                    <span>Capital:</span>{" "}
+                    {country.capital ? country.capital : "None"}
                   </p>
                 </div>
                 <div
@@ -86,18 +93,20 @@ export default function Detalles() {
                 >
                   <p>
                     <span>Top Level Domain:</span>{" "}
-                    {country.tld[0] ? country.tld[0] : "none"}
+                    {country.tld[0] ? country.tld[0] : "None"}
                   </p>
                   <p>
                     <span>Currencies:</span>{" "}
-                    {
-                      country.currencies[Object.keys(country.currencies)[0]]
-                        .name
-                    }
+                    {country.currencies
+                      ? country.currencies[Object.keys(country.currencies)[0]]
+                          .name
+                      : "None"}
                   </p>
                   <p>
                     <span>Languages:</span>{" "}
-                    {Object.values(country.languages).join(", ")}
+                    {country.languages
+                      ? Object.values(country.languages).join(", ")
+                      : "None"}
                   </p>
                 </div>
               </div>
