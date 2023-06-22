@@ -1,14 +1,17 @@
-import { createContext, useEffect, useState } from "react"
-import { instance } from "../api/base.api";
+import { createContext, useContext, useEffect, useState } from "react";
+import { instance } from "../utils/config/axios.config";
 import swal from "sweetalert";
 
-export const ThemeContext = createContext();
 
-export const ThemeContextProvider = ({ children }) => {
+export const CountriesContext = createContext();
+
+export const useCountries = () => {
+  return useContext(CountriesContext)
+}
+
+export const CountriesContextProvider = ({ children }) => {
 
   const [countries, setCountries] = useState([]);
-
-  const [themeState, setThemeState] = useState(false);
 
   const getAllCountries = async () => {
     try {
@@ -21,15 +24,12 @@ export const ThemeContextProvider = ({ children }) => {
 
   const changeRegion = async (e) => {
     const { value } = e.target;
-    console.log(value);
     if (value === "All") {
       getAllCountries();
     } else {
       try {
         const response = await instance.get(`/region/${value}`);
-        console.log(response.data);
         setCountries(response.data);
-        console.log(countries)
       } catch (error) {
         swal("Error", "Something has wrong...");
       }
@@ -39,10 +39,8 @@ export const ThemeContextProvider = ({ children }) => {
   const searchCountry = async (e) => {
     e.preventDefault();
     const value = e.currentTarget.input.value;
-    console.log(value);
     try {
       const response = await instance.get(`/name/${value}`);
-      console.log(response.data);
       setCountries(response.data);
     } catch (error) {
       swal("Error", "Country not found...");
@@ -54,8 +52,14 @@ export const ThemeContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ themeState, setThemeState, changeRegion, searchCountry, countries, getAllCountries }}>
+    <CountriesContext.Provider
+      value={{
+        countries,
+        changeRegion,
+        searchCountry
+      }}
+    >
       {children}
-    </ThemeContext.Provider>
-  )
+    </CountriesContext.Provider>
+  );
 }

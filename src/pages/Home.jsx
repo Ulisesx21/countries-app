@@ -1,18 +1,21 @@
-import { useContext } from "react";
 import Search from "../components/Search";
-import "../styles/Main.css";
 import { CountryItem } from "../components/Country";
-import { ThemeContext } from "../context/Context";
+import { useCountries } from "../context/countriesContext";
+import { useTheme } from "../context/themeContext";
+import "../styles/Main.css";
+
 
 export default function Home() {
-  const { themeState, countries } = useContext(ThemeContext);
+
+  const { countries } = useCountries();
+  const { isDark } = useTheme();
 
   return (
-    <div className={`main ${themeState && "main-D"}`}>
+    <div className={`main ${isDark && "main-D"}`}>
       <Search />
       <div
         className={`countries-container ${
-          themeState && "countries-container-D"
+          isDark && "countries-container-D"
         }`}
       >
         {countries ? (
@@ -20,7 +23,7 @@ export default function Home() {
             <CountryItem key={i} country={country} />
           ))
         ) : (
-          <div className={themeState ? "loading-D" : "loading"}>Loading...</div>
+          <div className={isDark ? "loading-D" : "loading"}>Loading...</div>
         )}
       </div>
     </div>

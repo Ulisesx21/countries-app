@@ -1,24 +1,25 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useTheme } from "../context/themeContext";
+import { instance } from "../utils/config/axios.config";
+import { Link } from "react-router-dom";
 import "../styles/Detalles.css";
-import { ThemeContext } from "../context/Context";
-import { instance } from "../api/base.api";
 
 export default function Detalles() {
-  const [countries, setCountries] = useState();
+  
+  const [country, setCountry] = useState();
 
-  let query = new URLSearchParams(window.location.search);
-  let name = query.get("name");
+  const query = new URLSearchParams(window.location.search);
+  const name = query.get("name");
 
-  const { themeState } = useContext(ThemeContext);
+  const { isDark } = useTheme();
 
   useEffect(() => {
     const getCountry = async () => {
       try {
         const response = await instance.get(`name/${name}?fullText=true`);
-        setCountries(response.data);
+        setCountry(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -26,19 +27,17 @@ export default function Detalles() {
     getCountry();
   }, [name]);
 
-  console.log(countries);
-
   const Left = <FontAwesomeIcon icon={faArrowLeft} className="left" />;
 
   return (
-    <div className={`detalle-container ${themeState && "detalle-container-D"}`}>
-      <div className={themeState ? "back-btn-D" : "back-btn"}>
+    <div className={`detalle-container ${isDark && "detalle-container-D"}`}>
+      <div className={isDark ? "back-btn-D" : "back-btn"}>
         <Link to={`/countries-app`} className="back-btn-link">
           <button>{Left} Back</button>
         </Link>
       </div>
-      {countries ? (
-        countries.map((country, i) => (
+      {country ? (
+        country.map((country, i) => (
           <div className="img-detalle" key={i}>
             <div>
               <img src={country?.flags?.png} alt={country?.name?.common} />
@@ -46,15 +45,15 @@ export default function Detalles() {
             <div className="desciption-title-container">
               <div
                 className={`description-title ${
-                  themeState && "description-title-D"
+                  isDark && "description-title-D"
                 }`}
               >
-                <h3>{country.name.common ? country.name.common : "None"}</h3>
+                <h3>{country.name.common || "None"}</h3>
               </div>
               <div className="description">
                 <div
                   className={`description-div1 ${
-                    themeState && "description-div1-D"
+                    isDark && "description-div1-D"
                   }`}
                 >
                   <p>
@@ -74,26 +73,22 @@ export default function Detalles() {
                       : "None"}
                   </p>
                   <p>
-                    <span>Region:</span>{" "}
-                    {country.region ? country.region : "None"}
+                    <span>Region:</span> {country.region || "None"}
                   </p>
                   <p>
-                    <span>Sub Region:</span>{" "}
-                    {country.subregion ? country.subregion : "None"}
+                    <span>Sub Region:</span> {country.subregion || "None"}
                   </p>
                   <p>
-                    <span>Capital:</span>{" "}
-                    {country.capital ? country.capital : "None"}
+                    <span>Capital:</span> {country.capital || "None"}
                   </p>
                 </div>
                 <div
                   className={`description-div2 ${
-                    themeState && "description-div2-D"
+                    isDark && "description-div2-D"
                   }`}
                 >
                   <p>
-                    <span>Top Level Domain:</span>{" "}
-                    {country.tld[0] ? country.tld[0] : "None"}
+                    <span>Top Level Domain:</span> {country.tld[0] || "None"}
                   </p>
                   <p>
                     <span>Currencies:</span>{" "}
@@ -111,7 +106,7 @@ export default function Detalles() {
                 </div>
               </div>
               <div className="borders-container">
-                <h5 className={`brd ${themeState && "brd-D"}`}>
+                <h5 className={`brd ${isDark && "brd-D"}`}>
                   Border Countries:
                 </h5>
                 <div className="brd-c">
@@ -119,14 +114,14 @@ export default function Detalles() {
                     {country.borders ? (
                       country.borders.map((border, i) => (
                         <div
-                          className={themeState ? "borders-D" : "borders"}
+                          className={isDark ? "borders-D" : "borders"}
                           key={i}
                         >
                           {border}
                         </div>
                       ))
                     ) : (
-                      <div className={themeState ? "borders-D" : "borders"}>
+                      <div className={isDark ? "borders-D" : "borders"}>
                         None
                       </div>
                     )}
@@ -137,7 +132,7 @@ export default function Detalles() {
           </div>
         ))
       ) : (
-        <div className={themeState ? "loading-D" : "loading"}>Loading...</div>
+        <div className={isDark ? "loading-D" : "loading"}>Loading...</div>
       )}
     </div>
   );

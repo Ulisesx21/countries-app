@@ -1,22 +1,25 @@
-import "../styles/Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
-import { ThemeContext } from "../context/Context";
+import { useTheme } from "../context/themeContext";
+import { useCountries } from "../context/countriesContext";
+import "../styles/Search.css";
+
 
 export default function Search() {
-  const { themeState, searchCountry, changeRegion } = useContext(ThemeContext);
+
+  const { searchCountry, changeRegion } = useCountries();
+  const { isDark } = useTheme();
 
   const element = (
     <FontAwesomeIcon
       icon={faSearch}
-      className={`${themeState ? "element-D" : "element"}`}
+      className={`${isDark ? "element-D" : "element"}`}
     />
   );
 
   return (
     <div className="search-container">
-      <div className={`search-div1 ${themeState && "search-div1-D"}`}>
+      <div className={`search-div1 ${isDark && "search-div1-D"}`}>
         <form
           onSubmit={(e) => {
             searchCountry(e);
@@ -29,7 +32,7 @@ export default function Search() {
           </label>
         </form>
       </div>
-      <div className={`${themeState ? "search-div2-D" : "search-div2"}`}>
+      <div className={`${isDark ? "search-div2-D" : "search-div2"}`}>
         <select onChange={changeRegion}>
           <option disabled selected>
             Filter by Region
