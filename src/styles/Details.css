@@ -21,12 +21,6 @@
     margin-right: 130px;
 }
 
-.detalle-container-D img{
-    width: 550px;
-    height: 400px;
-    margin-right: 130px;
-}
-
 .img-detalle {
     display: flex;
     justify-content: center;
@@ -67,7 +61,6 @@
 .description-div1 {
     display: flex;
     flex-direction: column;
-    width: 280px;
 }
 
 .description-div1-D p{
@@ -106,20 +99,9 @@
 }
 
 .borders-D {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    margin-top: 1px;
-    margin-left: 6px;
-    margin-bottom: 5px;
-    padding: 1px 0;
-    text-align: center;
-    flex-wrap: wrap;
     color: white;
     background: hsl(209, 23%, 22%);
     box-shadow: 1px 1px 5px hsl(210, 23%, 12%);
-    border-radius: 2px;
 }
 
 .brd {
@@ -155,15 +137,6 @@
     margin-top: 50px;
 }
 
-
-.back-btn-D {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 0 120px;
-    margin-top: 50px;
-}
-
 .back-btn-link {
     text-decoration: none;
     color: black;
@@ -181,27 +154,18 @@
 }
 
 .back-btn-D button{
-    background: white;
-    border: none;
-    box-shadow: 1px 1px 5px rgba(179, 179, 179, 0.425);
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 80px;
     box-shadow: 1px 1px 5px hsl(210, 23%, 12%);
     background: hsl(209, 23%, 22%);
     color:white;
 }
 
 .back-btn-D button:hover{
-        background: hsla(208, 23%, 22%, 0.548);
-    }
+    background: hsla(208, 23%, 22%, 0.548);
+}
 
 .back-btn button:hover{
     background: hsla(0, 0%, 97%, 0.548);
 }
-
 
 .left {
     padding-right: 12px;
@@ -211,7 +175,6 @@
     margin-top: -15px;
     color: white;
 }
-
 
 @media (max-width: 1680px){
 
@@ -227,10 +190,6 @@
         background: hsla(0, 0%, 97%, 0.548);
     }
 
-    .back-btn-D button{
-        margin-top: 25px;
-    }
-
     .back-btn-D button:hover{
         background: hsla(208, 23%, 22%, 0.548);
     }
@@ -241,28 +200,18 @@
 
 }
 
-
-
 @media (max-width: 1400px){
-
 
     .detalle-container img{
         margin-right: 60px;
     }
 
     .img-detalle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin-top: 30px;
     }
 
     .description-title {
         margin: 30px 0;
-    }
-
-    .description-title-container {
-        width: 600px;
     }
 
     .brd-c {
@@ -274,10 +223,6 @@
         margin-bottom: 20px;
     }
 
-    .back-btn-D button{
-        margin-top: 0px;
-        margin-bottom: 20px;
-    }
 }
 
 
@@ -296,12 +241,8 @@
     }
 
     .img-detalle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
         width: 50vw;
-    }
+    } 
 
     .description-title-container {
         display: flex;
@@ -311,12 +252,10 @@
     }
 
     .description {
-        display: flex;
         align-items: flex-start;
-        justify-content: space-between;
         height: 180px;
         width: 50vw;
-    }
+    }  
 
     .description-div2 {
         display: flex;
@@ -334,11 +273,9 @@
     }
 
     .borders-container {
-        display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
         width: 50vw;
+        margin-top: 20px;
     }
 
     .brd-c {
@@ -357,54 +294,41 @@
 
     .description {
         flex-direction: column;
-        height: 300px;
+        height: 100%;
     }
 
-    .description-div {
+    .description-div1 {
         margin: 0;
         padding: 0;
+        height: 100%;
     }
 
     .description-div2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-start;
-        margin: 0;
-        padding: 0;
-        height: 100px;
+        justify-content: flex-start;
+        height: 100%;
+        margin-top: 15px;
     }
 
     .borders-container {
         flex-direction: column;
         justify-content: flex-end;
-        align-items: flex-start;
+        margin-bottom: 150px;
+        margin-top: 30px;
     }
 
     .brd-c {
         width: 100%;
     }
 
-}
+    .brd {
+        margin-bottom: 10px;
+    }
 
-.brd {
-    margin-bottom: 10px;
 }
-
 
 @media (max-width: 768px){
 
     .back-btn {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 45px;
-        padding: 0;
-        width: 65vw;
-    }
-
-    .back-btn-D {
-        display: flex;
-        justify-content: flex-start;
         margin-top: 45px;
         padding: 0;
         width: 65vw;
@@ -437,17 +361,6 @@
 @media (max-width: 500px){
 
     .back-btn {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 40px;
-        margin-bottom: 25px;
-        padding: 0;
-        width: 80vw;
-    }
-
-    .back-btn-D {
-        display: flex;
-        justify-content: flex-start;
         margin-top: 40px;
         margin-bottom: 25px;
         padding: 0;
@@ -455,10 +368,6 @@
     }
 
     .back-btn button{
-        height: 33px;
-    }
-
-    .back-btn-D button{
         height: 33px;
     }
 
@@ -480,8 +389,6 @@
     }
 
     .description {
-        display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
@@ -493,20 +400,14 @@
 
     .description-div2 {
         width: 80vw;
-        margin: 0;
-        padding: 0;
         padding-top: 10px;
         height: 120px;
     }
 
     .description-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        padding: 0;
-        margin-top: 30px;
-        margin-bottom: 30px;
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 30px 0;
     }
 
     .description-title h3{
@@ -516,12 +417,10 @@
     }
 
     .borders-container {
-        flex-direction: column;
         justify-content: flex-end;
-        align-items: flex-start;
         width: 80vw;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         padding: 0;
     }
 
@@ -535,9 +434,7 @@
     }
 
     .brd-c {
-        display: flex;
         align-items: center;
-        justify-content: flex-start;
         padding: 0;
         margin: 0;
         width: 78vw;

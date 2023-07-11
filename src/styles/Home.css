@@ -16,8 +16,6 @@
 }
 
 .loading-D {
-    padding-top: 55px;
     background: hsl(207, 26%, 17%);
     color: white;
-    height: 100vh;
 }

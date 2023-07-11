@@ -1,31 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../context/themeContext";
+import { useTheme } from "../context/ThemeContext";
 import "../styles/Header.css";
 
 export default function Header() {
-
   const { isDark, setIsDark } = useTheme();
 
   const Moon = (
     <FontAwesomeIcon
       icon={faMoon}
-      className={`${isDark ? "i-moon-D" : "i-moon"}`}
+      className={`i-moon ${isDark && "i-moon-D"}`}
     />
   );
   const Sun = (
     <FontAwesomeIcon
       icon={faSun}
-      className={`${isDark ? "i-moon-D" : "i-moon"}`}
+      className={`i-moon ${isDark && "i-moon-D"}`}
     />
   );
 
   return (
-    <header className={`${isDark ? "Header-D" : "Header-L"}`}>
+    <header className={`Header-L ${isDark && "Header-D"}`}>
       <div>Where in the world?</div>
       <div className="mode">
         <button
-          className={`${isDark ? "btn-mode-D" : "btn-mode"}`}
+          className={`btn-mode ${isDark && "btn-mode-D"}`}
           onClick={() => setIsDark(!isDark)}
         >
           {isDark ? Sun : Moon}

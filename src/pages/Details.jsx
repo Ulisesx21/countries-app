@@ -1,25 +1,22 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "../context/themeContext";
-import { instance } from "../utils/config/axios.config";
-import { Link } from "react-router-dom";
-import "../styles/Detalles.css";
+import { useTheme } from "../context/ThemeContext";
+import { Link, useParams } from "react-router-dom";
+import { getCountryByFullName } from "../services/countries";
+import "../styles/Details.css";
 
-export default function Detalles() {
-  
-  const [country, setCountry] = useState();
-
-  const query = new URLSearchParams(window.location.search);
-  const name = query.get("name");
+export default function Details() {
+  const [country, setCountry] = useState([]);
 
   const { isDark } = useTheme();
+  const { name } = useParams();
 
   useEffect(() => {
     const getCountry = async () => {
       try {
-        const response = await instance.get(`name/${name}?fullText=true`);
-        setCountry(response.data);
+        const result = await getCountryByFullName(name);
+        setCountry(result)
       } catch (error) {
         console.log(error);
       }
@@ -31,7 +28,7 @@ export default function Detalles() {
 
   return (
     <div className={`detalle-container ${isDark && "detalle-container-D"}`}>
-      <div className={isDark ? "back-btn-D" : "back-btn"}>
+      <div className={`back-btn ${isDark && "back-btn-D"}`}>
         <Link to={`/countries-app`} className="back-btn-link">
           <button>{Left} Back</button>
         </Link>
@@ -114,14 +111,14 @@ export default function Detalles() {
                     {country.borders ? (
                       country.borders.map((border, i) => (
                         <div
-                          className={isDark ? "borders-D" : "borders"}
+                          className={`borders ${isDark && "borders-D"}`}
                           key={i}
                         >
                           {border}
                         </div>
                       ))
                     ) : (
-                      <div className={isDark ? "borders-D" : "borders"}>
+                      <div className={`borders ${isDark && "borders-D"}`}>
                         None
                       </div>
                     )}

@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
-import { useTheme } from "../context/themeContext";
+import { useTheme } from "../context/ThemeContext";
 import "../styles/Country.css";
 
 export const CountryItem = ({ country }) => {
-  
   const { isDark } = useTheme();
 
   return (
-    <div
-      className={`countrie-container ${isDark && "countrie-container-D"}`}
-    >
+    <div className={`countrie-container ${isDark && "countrie-container-D"}`}>
       <div className="img-container">
         <img src={country?.flags?.png} alt={country?.name?.common} />
       </div>
@@ -20,7 +17,7 @@ export const CountryItem = ({ country }) => {
       >
         <h3>
           <Link
-            to={`/detalle?name=${country?.name.common}`}
+            to={`/details/${country?.name?.common}`}
             className={`a-titulo ${isDark && "a-titulo-D"}`}
           >
             {country?.name?.common}
