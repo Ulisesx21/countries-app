@@ -2,9 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../context/ThemeContext";
 import { useCountries } from "../context/CountriesContext";
+import { useCallback, useEffect, useState } from "react";
+import { get, set } from "../utils/sessionStorage";
 import "../styles/Search.css";
 
 export default function Search() {
+  const [inputValue, setInputValue] = useState(get("ca-inputValue") || "");
+
   const { searchCountry, changeRegion, getAllCountries } = useCountries();
   const { isDark } = useTheme();
 
@@ -19,19 +23,22 @@ export default function Search() {
   };
 
   const handleChange = (e) => {
-    const inputValue = e.target.value;
-
-    onChange(inputValue);
+    const value = e.target.value;
+    onChange(value);
   };
 
-  const onChange = debounce((value) => {
-    if (value === "") {
-      getAllCountries();
-      return;
-    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const onChange = useCallback(
+    debounce((value) => {
+      if (value === "") {
+        getAllCountries();
+        return;
+      }
 
-    searchCountry(value);
-  }, 500);
+      searchCountry(value);
+    }, 500),
+    []
+  );
 
   const handleSelectChange = (e) => {
     e.preventDefault();
@@ -45,6 +52,10 @@ export default function Search() {
     />
   );
 
+  useEffect(() => {
+    set("ca-inputValue", inputValue);
+  }, [inputValue]);
+
   return (
     <div className="search-container">
       <div className={`search-div1 ${isDark && "search-div1-D"}`}>
@@ -53,7 +64,11 @@ export default function Search() {
             {SearchIcon}
             <input
               name="input"
-              onChange={(e) => handleChange(e)}
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                handleChange(e);
+              }}
               placeholder="Search for a country..."
             ></input>
           </label>
