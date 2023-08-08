@@ -8,12 +8,13 @@ import {
 } from "../services/countries";
 
 export const CountriesContextProvider = ({ children }) => {
+  
   const [countries, setCountries] = useState([]);
 
   const getAllCountries = async () => {
     try {
-      const response = await getAll();
-      setCountries(response);
+      const data = await getAll();
+      setCountries(data);
     } catch (error) {
       swal("Error", "Something has wrong...");
     }
@@ -24,8 +25,8 @@ export const CountriesContextProvider = ({ children }) => {
       if (value === "All") {
         getAllCountries();
       } else {
-        const response = await getCountriesByRegion(value);
-        setCountries(response);
+        const data = await getCountriesByRegion(value);
+        setCountries(data);
       }
     } catch (error) {
       swal("Error", "Something has wrong...");
@@ -34,8 +35,8 @@ export const CountriesContextProvider = ({ children }) => {
 
   const searchCountry = async (value) => {
     try {
-      const response = await getCountryByName(value);
-      setCountries(response);
+      const data = await getCountryByName(value);
+      setCountries(data);
     } catch (error) {
       swal("Error", "Country not found...");
     }
@@ -51,6 +52,7 @@ export const CountriesContextProvider = ({ children }) => {
         countries,
         changeRegion,
         searchCountry,
+        getAllCountries,
       }}
     >
       {children}
