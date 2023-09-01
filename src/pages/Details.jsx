@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../context/ThemeContext";
 import { Link, useParams } from "react-router-dom";
-import { getCountryByFullName } from "../services/countries";
+import { getByFullName } from "../services/countries";
 import "../styles/Details.css";
+
 
 export default function Details() {
   const [country, setCountry] = useState([]);
@@ -15,8 +16,8 @@ export default function Details() {
   useEffect(() => {
     const getCountry = async () => {
       try {
-        const result = await getCountryByFullName(name);
-        setCountry(result)
+        const result = await getByFullName(name);
+        setCountry(result);
       } catch (error) {
         console.log(error);
       }
@@ -45,7 +46,7 @@ export default function Details() {
                   isDark && "description-title-D"
                 }`}
               >
-                <h3>{country.name.common || "None"}</h3>
+                <h3>{country?.name?.common || "None"}</h3>
               </div>
               <div className="description">
                 <div
@@ -55,7 +56,7 @@ export default function Details() {
                 >
                   <p>
                     <span>Native Name: </span>
-                    {country.name.nativeName
+                    {country?.name?.nativeName
                       ? country.name.nativeName[
                           Object.keys(country.name.nativeName)[
                             Object.keys(country.name.nativeName).length - 1
@@ -70,13 +71,13 @@ export default function Details() {
                       : "None"}
                   </p>
                   <p>
-                    <span>Region:</span> {country.region || "None"}
+                    <span>Region:</span> {country?.region || "None"}
                   </p>
                   <p>
-                    <span>Sub Region:</span> {country.subregion || "None"}
+                    <span>Sub Region:</span> {country?.subregion || "None"}
                   </p>
                   <p>
-                    <span>Capital:</span> {country.capital || "None"}
+                    <span>Capital:</span> {country?.capital || "None"}
                   </p>
                 </div>
                 <div
@@ -85,19 +86,20 @@ export default function Details() {
                   }`}
                 >
                   <p>
-                    <span>Top Level Domain:</span> {country.tld[0] || "None"}
+                    <span>Top Level Domain:</span>{" "}
+                    {country?.tld ? country?.tld[0] : "None"}
                   </p>
                   <p>
                     <span>Currencies:</span>{" "}
-                    {country.currencies
+                    {country?.currencies
                       ? country.currencies[Object.keys(country.currencies)[0]]
-                          .name
+                          ?.name
                       : "None"}
                   </p>
                   <p>
                     <span>Languages:</span>{" "}
-                    {country.languages
-                      ? Object.values(country.languages).join(", ")
+                    {country?.languages
+                      ? Object.values(country?.languages).join(", ")
                       : "None"}
                   </p>
                 </div>
@@ -108,7 +110,7 @@ export default function Details() {
                 </h5>
                 <div className="brd-c">
                   <div className="div-brd-container">
-                    {country.borders ? (
+                    {country?.borders ? (
                       country.borders.map((border, i) => (
                         <div
                           className={`borders ${isDark && "borders-D"}`}

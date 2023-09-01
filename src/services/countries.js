@@ -9,7 +9,7 @@ export const getAll = async () => {
   }
 };
 
-export const getCountryByName = async (name) => {
+export const getByName = async (name) => {
   try {
     const response = await instance.get(`/name/${name}`);
     return response.data;
@@ -18,7 +18,7 @@ export const getCountryByName = async (name) => {
   }
 };
 
-export const getCountryByFullName = async (name) => {
+export const getByFullName = async (name) => {
   try {
     const response = await instance.get(`name/${name}?fullText=true`);
     return response.data;
@@ -27,7 +27,7 @@ export const getCountryByFullName = async (name) => {
   }
 };
 
-export const getCountriesByRegion = async (value) => {
+export const getByRegion = async (value) => {
   try {
     const response = await instance.get(`region/${value}`);
     return response.data;

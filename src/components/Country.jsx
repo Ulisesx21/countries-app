@@ -33,7 +33,7 @@ export const CountryItem = ({ country }) => {
         </p>
         <p>
           <span>Capital: </span>
-          {`${country?.capital}`}
+          {`${country?.capital ? country?.capital.join(", ") : "None"}`}
         </p>
       </div>
     </div>

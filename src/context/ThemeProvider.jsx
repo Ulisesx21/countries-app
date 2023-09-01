@@ -4,10 +4,10 @@ import { get, set } from "../utils/sessionStorage";
 
 export const ThemeContextProvider = ({ children }) => {
 
-  const [isDark, setIsDark] = useState(get("countries-app-theme") || false);
+  const [isDark, setIsDark] = useState(get("countriesAppTheme") || true);
 
   useEffect(() => {
-    set("countries-app-theme", isDark);
+    set("countriesAppTheme", isDark);
   }, [isDark]);
 
   return (
